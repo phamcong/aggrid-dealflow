@@ -1,0 +1,19 @@
+<ng-container *ngIf="pipeline$ | async as pipelines">
+  <div class="p-2 d-flex flex-column justify-content-center" style="height: calc(100vh - 60px); width: 60%; margin: auto">
+    <h2 class="text-center text-uppercase mb-3"><span class="text-danger">{{ pipelines.length }}</span> Primary pipelines</h2>
+    <div class="input-group input-group-sm mb-2" style="max-width: 300px;">
+      <span class="input-group-text" id="basic-addon1">Search</span>
+      <input type="text" class="form-control" placeholder="Type to search..."
+             [(ngModel)]="quickSearchTerm"
+             (ngModelChange)="onChangeQuickSearch($event)">
+    </div>
+    <div style="flex: 1 1 auto;">
+      <ag-grid-angular #pipelineGrid
+                       style="width: 100%; height: 100%;"
+                       class="ag-theme-alpine"
+                       [rowData]="pipelines"
+                       [gridOptions]="pipelineGridOptions">
+      </ag-grid-angular>
+    </div>
+  </div>
+</ng-container>

@@ -1,0 +1,8 @@
+<div class="d-flex align-items-center">
+  <button *ngFor="let action of actions" type="button"
+          style="margin: 0px 3px;"
+          [ngClass]="'btn btn-sm btn-' + (action.bg ?? 'primary')"
+          [ngStyle]="{ color: action.color }">
+    {{ action.label }}
+  </button>
+</div>
