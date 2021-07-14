@@ -27,10 +27,10 @@ export class PipelineGridComponent implements OnInit {
   ngOnInit(): void {
     this.pipelineGridOptions = {
       columnDefs: [
-        { field: 'fundName', checkboxSelection: true },
-        { field: 'gpName' },
+        { field: 'fundName', checkboxSelection: true, pinned: 'left' },
+        { field: 'gpName', pinned: 'left' },
         {
-          field: 'interest',
+          field: 'interest', pinned: 'left',
           cellClassRules: {
             'fw-bold': (params: CellClassParams) => params.value === 'high'
           }
