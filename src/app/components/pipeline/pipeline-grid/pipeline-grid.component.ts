@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { AgGridAngular } from 'ag-grid-angular';
-import { CellClassParams, GridOptions, ICellRendererParams } from 'ag-grid-community';
+import { CellClassParams, GridOptions, ICellRendererParams, RowClickedEvent, RowDoubleClickedEvent } from 'ag-grid-community';
 import { Observable } from 'rxjs';
 import { ActionCellRenderer } from 'src/app/shared/components/action-cell-renderer/action-cell-renderer.component';
 import { ActionListItem } from 'src/app/shared/models/action';
@@ -27,7 +27,7 @@ export class PipelineGridComponent implements OnInit {
   ngOnInit(): void {
     this.pipelineGridOptions = {
       columnDefs: [
-        { field: 'fundName' },
+        { field: 'fundName', checkboxSelection: true },
         { field: 'gpName' },
         {
           field: 'interest',
@@ -61,6 +61,10 @@ export class PipelineGridComponent implements OnInit {
           }
         }
       ],
+      rowSelection: 'single',
+      onRowDoubleClicked: ($event: RowDoubleClickedEvent) => {
+        alert('Clicked on ' + $event.data && $event.data.fundName)
+      },
       headerHeight: 30,
       defaultColDef: { headerClass: ['bg-info'] },
       frameworkComponents: {
